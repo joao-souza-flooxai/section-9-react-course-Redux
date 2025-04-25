@@ -2,8 +2,9 @@
 import React from 'react';
 
 import Card from './Card';
+import {connect} from "react-redux"
 
-export default function Interval(props)  {
+function Draw(props)  {
     const {min,max} = props;
     const random = parseInt(Math.random() * (min-max)) + min
     return (
@@ -19,3 +20,12 @@ export default function Interval(props)  {
         </Card>
     );
 };
+
+const mapStateToProps = (state) => {
+    return {
+        min: state.numbers.min,
+        max: state.numbers.max
+    };
+};
+
+export default connect(mapStateToProps)(Draw)

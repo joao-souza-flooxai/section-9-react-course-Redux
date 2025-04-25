@@ -3,7 +3,10 @@ import React from 'react';
 
 import Card from './Card';
 
-export default function Interval(props)  {
+import {connect} from "react-redux"
+
+
+function Average(props) {
     const {min,max} = props;
     return (
         <Card title="Average of the numbers" green>
@@ -18,3 +21,13 @@ export default function Interval(props)  {
         </Card>
     );
 };
+// Essa função diz como mapear os dados do estado global para as props do componente
+const mapStateToProps = (state) => {
+    return {
+        min: state.numbers.min,
+        max: state.numbers.max
+    };
+};
+
+// Exporta o componente conectado ao Redux
+export default connect(mapStateToProps)(Average);

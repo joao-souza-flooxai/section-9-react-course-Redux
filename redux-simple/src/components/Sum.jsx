@@ -3,7 +3,9 @@ import React from 'react';
 
 import Card from './Card';
 
-export default function Interval(props)  {
+import {connect} from "react-redux"
+
+ function Sum(props)  {
     const {min,max} = props;
     return (
         <Card title="Sum of the numbers" blue>
@@ -18,3 +20,12 @@ export default function Interval(props)  {
         </Card>
     );
 };
+
+const mapStateToProps = (state) => {
+    return {
+        min: state.numbers.min,
+        max: state.numbers.max
+    };
+};
+
+export default connect(mapStateToProps)(Sum);
